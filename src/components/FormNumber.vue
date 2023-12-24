@@ -5,7 +5,7 @@
     </h2>
     <div class="container-input">
       <input v-autofocus type="number" class="input-form" placeholder="Teléfono" v-model="numberInput"/>
-      <button class="btn-finish">
+      <button class="btn-finish" @click="$emit('setNumber', numberInput)">
         Finalizar
       </button>
     </div>

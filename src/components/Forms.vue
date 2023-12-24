@@ -66,28 +66,34 @@
       }
     },
     methods: {
+      // Funcion cuando el formulario es de tipo radio
       functionSelectedRadio( selected ) {
         this.selectedRadio = selected
         this.$emit('selection', selected)
 
+        // se simula el tiempo de carga de la data
         setTimeout(() => {
           this.$emit('selection', selected)
         }, 1500);
       },
+      // Funcion cuando el formulario es de tipo checkbox
       functionSelectedCheckbox( selected ) {
         const copy = this.seletedCheckbox
         copy.filter( item => item.option === selected )[0].active = !copy.filter( item => item.option === selected )[0].active
         this.seletedCheckbox = copy
       },
+      // Funcion para el boton de continuar cuando el formulario es de tipo checkbox
       nextStep() {
         this.$emit('selection', this.seletedCheckbox)
 
+        // se simula el tiempo de carga de la data
         setTimeout(() => {
           this.$emit('selection', this.seletedCheckbox)
         }, 1500);
       }
     },
     components: {
+      // Icono de check
       CheckSmall
     }
   }
@@ -99,6 +105,7 @@
   .section-forms
     padding: 16px 20px
     transition: all 0.5s
+    min-height: 100px
     .title-form
       margin: 0
       margin-bottom: 10px
@@ -139,6 +146,7 @@
             width: 20px
             height: 20px
             display: block
+            cursor: pointer
             border-radius: 50%
             border: 2px solid $colorDark
             margin-left: auto
@@ -152,6 +160,7 @@
             width: 20px
             height: 20px
             display: block
+            cursor: pointer
             border-radius: 5px
             position: relative
             border: 2px solid $colorDark
@@ -205,6 +214,6 @@
   .disabled
     height: 0
     overflow: hidden
-    padding: 0
-        
+    padding: 0 20px
+    min-height: 0
 </style>

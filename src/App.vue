@@ -38,6 +38,7 @@
         msg="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quis risus eget urna mollis ornare. Sed quis risus eget urna mollis ornare."
       />
     <FormNumber 
+      @setNumber="setNumber"
       title="Guarda tus respuestas"
       v-if="step >= 6"
     />
@@ -61,6 +62,7 @@
       }
     },
     mounted() {
+      // se simula el tiempo de carga de la data
       setTimeout(() => {
         this.step += 1
         this.setPercentage()
@@ -68,19 +70,28 @@
     },
     methods: {
       setPercentage() {
+        // porcentaje de progreso
         this.percentage = (100 / 6 ) * this.step
       },
       setStep() {
+        // siguiente paso
         this.step += 1
         this.setPercentage()
       },
       setOptions(selected) {
+        // se guarda la data que vieno del formulario de radio
         this.data.responseRadio = selected
         this.setStep()
       },
       setOptionsCheckbox(selected) {
+        // se guarda la data que vieno del formulario de checkbox
         this.data.responseCheckbox = selected
         this.setStep()
+      },
+      setNumber (selected) {
+        this.data.responseNumber = selected
+
+        // se enviaria la data al backend
       }
     },
     components: {
@@ -110,7 +121,8 @@
       max-width: 1440px
       height: calc(100vh - 43px)
       margin-top: -43px
-      padding-top: 50px
+      padding-top: 15px
+      margin: auto
       display: flex
       flex-direction: column
       position: relative
